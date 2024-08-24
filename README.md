@@ -26,6 +26,18 @@ O backend serve como o componente central de nossa aplicação, gerenciando a au
  
 ## Domínio
 
+
+### Comentario
+
+```ts
+{
+    id: number;
+    texto: string;
+    usuarioId:number;
+    paiId:number;
+}
+```
+
 ### Filme
 
 ```ts

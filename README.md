@@ -1,10 +1,11 @@
 # Twowatch
 
-Documentação para o backend da nossa aplicação de Biblioteca de Filmes. Este documento fornece uma visão geral dos diversos pontos finais e funcionalidades fornecidos pelo servidor backend.
+Documentação para o projeto que consiste em uma Rede social de Filmes.
+Este documento fornece uma visão geral dos diversos pontos finais e funcionalidades fornecidos pelo servidor backend.
 
 ## Visão Geral
 
-O backend da Biblioteca de Filmes serve como o componente central de nossa aplicação, gerenciando a autenticação do usuário, armazenamento de filmes, funcionalidade de chat e salas privadas. Abaixo estão as principais entidades e funcionalidades fornecidas pelo backend:
+O backend serve como o componente central de nossa aplicação, gerenciando a autenticação do usuário, armazenamento de filmes, funcionalidade de chat e salas privadas. Abaixo estão as principais entidades e funcionalidades fornecidas pelo backend:
 
 - **Usuário**: Representa um usuário registrado da aplicação. 
 - **Sala de Chat**: Um espaço virtual onde os usuários podem discutir sobre filmes.
@@ -14,6 +15,11 @@ O backend da Biblioteca de Filmes serve como o componente central de nossa aplic
 
 - **Mensagens de Chat**: Mensagens trocadas dentro de uma sala de chat. [Sendo implementado]
 - **Sala Privada**: Salas de chat privadas entre usuários específicos. [Futuro]
+
+
+<br/>
+
+- **Posts/Comentarios**: Usuarios podem criar posts publicos com comentarios.
 
 ## Endpoints da API
 ![img.png](docs/img.png) 

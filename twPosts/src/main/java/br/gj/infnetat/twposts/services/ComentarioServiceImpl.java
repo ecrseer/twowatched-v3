@@ -3,8 +3,11 @@ package br.gj.infnetat.twposts.services;
 import br.gj.infnetat.twposts.feign.UsuarioClient;
 import br.gj.infnetat.twposts.feign.UsuarioPayload;
 import br.gj.infnetat.twposts.model.Comentario;
+import br.gj.infnetat.twposts.model.ComentarioDto;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.List;
 
@@ -12,8 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ComentarioServiceImpl {
 
-    private final UsuarioClient usuarioClient;
     private final ComentarioRepository comentarioRepository;
+    private final UsuarioClient usuarioClient;
 
 
 
@@ -21,10 +24,26 @@ public class ComentarioServiceImpl {
         return comentarioRepository.save(comentario);
     }
 
-    public List<Comentario> listar() {
-        UsuarioPayload usuarioPayload = usuarioClient.encontraUsuarioPorId(0L);
-        System.out.println(usuarioPayload.getNome());
-        return comentarioRepository.findAll();
+    public List<ComentarioDto> listar() {
+        List<Comentario> comentarios = comentarioRepository.findAll();
+        List<ComentarioDto> comUsuarios = comentarios.stream().map(comentario -> {
+            UsuarioPayload encontrado = buscaUsuario(comentario.getUsuarioId());
+            ComentarioDto dto = new ComentarioDto(comentario);
+            dto.setUsuario(encontrado);
+            return dto;
+        }).toList();
+        return comUsuarios;
+    }
+
+    private UsuarioPayload buscaUsuario(Long usuarioId){
+        try{
+            UsuarioPayload usuarioPayload = usuarioClient.encontraUsuarioPorId(usuarioId);
+            return usuarioPayload;
+        }catch (Exception exception){
+            var dto = new UsuarioPayload();
+            dto.setNome("Nao encontrado");
+            return dto;
+        }
     }
 
     public Comentario buscarPorId(Long id) {

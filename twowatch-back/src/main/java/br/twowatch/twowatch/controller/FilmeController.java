@@ -4,10 +4,7 @@ import br.twowatch.twowatch.model.Filme;
 import br.twowatch.twowatch.model.SalaChat;
 import br.twowatch.twowatch.service.impl.FilmeServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/filme")
@@ -24,5 +21,6 @@ public class FilmeController {
         Filme criado = this.filmeService.save(filme);
         return criado.getId();
     }
+
 
 }

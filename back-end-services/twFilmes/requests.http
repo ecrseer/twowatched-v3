@@ -1,0 +1,21 @@
+### POST filmes
+POST http://localhost:6042/filme/criar
+Content-Type: application/json
+
+{
+  "title": "duro de matar"
+}
+
+
+### GET filmes
+
+GET http://localhost:6042/filme/listar
+
+
+###
+
+### GET filmes
+
+GET http://localhost:6042/filme/listar-paginado?page=1?limit=3
+
+###

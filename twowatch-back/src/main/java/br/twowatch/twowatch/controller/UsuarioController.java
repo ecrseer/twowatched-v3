@@ -16,36 +16,36 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
-    private final UsuarioServiceOld usuarioService;
     private final UsuarioServiceImpl usuarioServiceImpl;
 
-    public UsuarioController(UsuarioServiceOld usuarioService, UsuarioServiceImpl usuarioServiceImpl) {
-        this.usuarioService = usuarioService;
+    public UsuarioController( UsuarioServiceImpl usuarioServiceImpl) {
         this.usuarioServiceImpl = usuarioServiceImpl;
     }
 
     @PutMapping("/atualizar")
     public ResponseEntity<Usuario> atualizaUsuario(@RequestBody Usuario usuario) {
         System.out.println("PUT");
-        Usuario atualizado = this.usuarioService.atualizar(usuario);
+        var id = usuario.getId();
+        Usuario atualizado = this.usuarioServiceImpl.atualiza(id,usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(atualizado);
     }
 
     @PostMapping("/criar")
     @Operation(summary = "Cria um usuário")
     public int cadastraUsuario(@RequestBody Usuario usuario) {
-        usuarioService.cadastrar(usuario);
+        usuarioServiceImpl.save(usuario);
         return usuario.getId();
     }
 
 
     @DeleteMapping
-    public int removeUsuario(@RequestBody Usuario usuario) {
-        return this.usuarioService.removerPorId(usuario.getId());
+    public Usuario removeUsuario(@RequestBody Usuario usuario) {
+        return this.usuarioServiceImpl.deleta(usuario.getId());
     }
 
     @GetMapping("/{id}")
@@ -59,8 +59,8 @@ public class UsuarioController {
     })
     public ResponseEntity encontraUsuarioPorId(@PathVariable int id) {
         try {
-            Usuario usuario = this.usuarioService.encontrarPorId(id);
-            return ResponseEntity.ok(usuario);
+            Usuario usuario = this.usuarioServiceImpl.findById(id);
+        return ResponseEntity.ok(usuario);
         } catch (ResourceNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new HttpMessagePayload("Usuario nao encontrado com esse id"));
 

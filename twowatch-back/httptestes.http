@@ -1,9 +1,9 @@
 ### busca todos
-GET http://localhost:8042/usuario
+GET http://localhost:9942/monolito/usuario
 
 
 ### adiciona
-POST http://localhost:8042/usuario/criar
+POST http://localhost:9942/monolito/usuario/criar
 Content-Type: application/json
 
 {
@@ -13,18 +13,18 @@ Content-Type: application/json
 ###
 
 ### atualiza um
-PUT http://localhost:8042/usuario/atualizar
+PUT http://localhost:9942/monolito/usuario/atualizar
 Content-Type: application/json
 
 {
-  "id": 1,
+  "id": 2,
   "nome": "joaozin3"
 }
 
 ###
 
 ### remove um
-DELETE http://localhost:8042/usuario
+DELETE http://localhost:9942/monolito/usuario
 Content-Type: application/json
 
 {
@@ -32,7 +32,7 @@ Content-Type: application/json
 }
 
 ###### cria sala
-POST http://localhost:8042/sala-chat/criar
+POST http://localhost:9942/monolito/sala-chat/criar
 Content-Type: application/json
 
 {

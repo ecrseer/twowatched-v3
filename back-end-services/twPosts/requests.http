@@ -1,5 +1,15 @@
+### POST request to example server
+POST http://localhost:9999/posts/criar
+Content-Type: application/json
+
+{
+  "texto": " amanha vo ver himym ",
+  "usuarioId": 1
+}
+
+
 ### GET request to example server
-POST http://localhost:8080/comentarios/criar
+GET http://localhost:8042/comentarios/listar
 
 
 ###

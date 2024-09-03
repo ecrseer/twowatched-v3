@@ -4,10 +4,8 @@ import br.gj.infnetat.twposts.feign.UsuarioClient;
 import br.gj.infnetat.twposts.feign.UsuarioPayload;
 import br.gj.infnetat.twposts.model.Comentario;
 import br.gj.infnetat.twposts.model.ComentarioDto;
-import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.List;
 
@@ -27,7 +25,7 @@ public class ComentarioServiceImpl {
     public List<ComentarioDto> listar() {
         List<Comentario> comentarios = comentarioRepository.findAll();
         List<ComentarioDto> comUsuarios = comentarios.stream().map(comentario -> {
-            UsuarioPayload encontrado = buscaUsuario(comentario.getUsuarioId());
+            UsuarioPayload encontrado = buscaUsuarioMicroServico(comentario.getUsuarioId());
             ComentarioDto dto = new ComentarioDto(comentario);
             dto.setUsuario(encontrado);
             return dto;
@@ -35,7 +33,7 @@ public class ComentarioServiceImpl {
         return comUsuarios;
     }
 
-    private UsuarioPayload buscaUsuario(Long usuarioId){
+    private UsuarioPayload buscaUsuarioMicroServico(Long usuarioId){
         try{
             UsuarioPayload usuarioPayload = usuarioClient.encontraUsuarioPorId(usuarioId);
             return usuarioPayload;

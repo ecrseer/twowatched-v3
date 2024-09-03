@@ -1,5 +1,6 @@
 package br.twowatch.twowatch.service.impl;
 
+import br.twowatch.twowatch.exceptions.ResourceNotFoundException;
 import br.twowatch.twowatch.model.Usuario;
 import br.twowatch.twowatch.service.UsuarioRepository;
 import br.twowatch.twowatch.service.UsuarioService;
@@ -32,8 +33,12 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<Usuario> findById(int id) {
-        return this.usuarioRepository.findById(id);
+    public Usuario findById(int id) {
+        Optional<Usuario> byId = this.usuarioRepository.findById(id);
+        if(byId.isEmpty()){
+            throw new ResourceNotFoundException("Usuario n encontrado nesse id");
+        }
+        return byId.get();
     }
 
 
@@ -58,11 +63,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 
     public Usuario atualiza(int id, Usuario usuario) {
-        Optional<Usuario> encontrado = this.findById(id);
-        if (encontrado.isEmpty()) {
-            throw new RuntimeException("Nao encontrado");
-        }
+         this.findById(id);
+
         return this.save(usuario);
+    }
+
+    public Usuario deleta(int id) {
+        Optional<Usuario> usuario = this.usuarioRepository.findById(id);
+        if (usuario.isPresent()) {
+            this.usuarioRepository.delete(usuario.get());
+            return usuario.get();
+        }
+        throw new ResourceNotFoundException("Usuario n encontrado para remover");
     }
 
 }

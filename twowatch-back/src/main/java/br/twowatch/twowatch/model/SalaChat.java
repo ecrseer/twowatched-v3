@@ -17,12 +17,11 @@ public class SalaChat {
     private Long id;
     private String nome;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "filme_id")
-    private Filme filme;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Usuario> usuarios;
+    private Long filmeId;
+
+
+    private List<Long> usuariosId;
 
     public SalaChat(String nome) {
         this.nome = nome;

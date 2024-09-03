@@ -1,9 +1,6 @@
 package br.twowatch.twowatch;
 
-import br.twowatch.twowatch.model.Filme;
 import br.twowatch.twowatch.model.SalaChat;
-import br.twowatch.twowatch.model.Usuario;
-import br.twowatch.twowatch.service.SalaChatService;
 import br.twowatch.twowatch.service.impl.SalaChatServiceImpl;
 import br.twowatch.twowatch.service.impl.UsuarioServiceImpl;
 import org.junit.jupiter.api.DisplayName;
@@ -31,12 +28,12 @@ public class SalaChatServiceTests {
         SalaChat salvo = salaChatService.save(new SalaChat("Sala um"));
         assertNotNull(salvo);
 
-        Filme filme = new Filme("Duro de matar", "");
+        Long filme = 1L;
         SalaChat salaComFilme = new SalaChat(2L, "Sala Com filme", filme, null);
         SalaChat salvoComFilme = salaChatService.save(salaComFilme);
         assertNotNull(salvoComFilme);
 
-        Usuario usuarioSalvo = this.usuarioService.save(new Usuario("Laura", "", ""));
+        Long usuarioSalvo = 1L;
 
         SalaChat salaComFilmeEUsuario = new SalaChat(3L, "Sala Com filme e usuario", filme, List.of(usuarioSalvo));
         SalaChat salvoComFilmeUsuario = salaChatService.save(salaComFilmeEUsuario);

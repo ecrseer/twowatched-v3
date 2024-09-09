@@ -24,11 +24,11 @@ Content-Type: application/json
 ###
 
 ### remove um
-DELETE http://localhost:9942/monolito/usuario
+DELETE http://localhost:9942/monolito/usuario/deletar
 Content-Type: application/json
 
 {
-  "id": 3
+  "id": 1
 }
 
 ###### cria sala

@@ -1,5 +1,5 @@
 ### POST request to example server
-POST http://localhost:9999/posts/criar
+POST http://localhost:9942/posts/criar
 Content-Type: application/json
 
 {

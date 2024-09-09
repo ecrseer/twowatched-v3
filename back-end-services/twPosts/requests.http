@@ -1,5 +1,5 @@
 ### POST request to example server
-POST http://localhost:9942/posts/criar
+POST http://localhost:9942/tw-posts/comentarios/criar
 Content-Type: application/json
 
 {
@@ -9,7 +9,7 @@ Content-Type: application/json
 
 
 ### GET request to example server
-GET http://localhost:8042/comentarios/listar
+GET http://localhost:9942/tw-posts/comentarios/listar
 
 
 ###

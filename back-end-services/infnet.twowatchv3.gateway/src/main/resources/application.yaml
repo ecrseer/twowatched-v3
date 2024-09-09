@@ -10,6 +10,12 @@ spring:
             - StripPrefix=1
           predicates:
             - Path=/monolito/**
+        - id: posts
+          uri: lb://twPosts
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/tw-posts/**
 eureka:
   client:
     service-url:

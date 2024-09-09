@@ -16,6 +16,12 @@ spring:
             - StripPrefix=1
           predicates:
             - Path=/tw-posts/**
+        - id: filmes
+          uri: lb://twFilmes
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/tw-filmes/**
 eureka:
   client:
     service-url:

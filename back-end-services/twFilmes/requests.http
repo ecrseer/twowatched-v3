@@ -1,5 +1,5 @@
 ### POST filmes
-POST http://localhost:6042/filme/criar
+POST http://localhost:9942/tw-filmes/filme/criar
 Content-Type: application/json
 
 {
@@ -9,13 +9,13 @@ Content-Type: application/json
 
 ### GET filmes
 
-GET http://localhost:6042/filme/listar
+GET http://localhost:9942/tw-filmes/filme/listar
 
 
 ###
 
 ### GET filmes
 
-GET http://localhost:6042/filme/listar-paginado?page=1?limit=3
+GET http://localhost:9942/tw-filmes/filme/listar-paginado?page=1?limit=3
 
 ###

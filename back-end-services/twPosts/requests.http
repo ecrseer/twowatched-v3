@@ -3,7 +3,7 @@ POST http://localhost:9942/tw-posts/comentarios/criar
 Content-Type: application/json
 
 {
-  "texto": " amanha vo ver himym ",
+  "texto": " amanha vo ver friends ",
   "usuarioId": 1
 }
 

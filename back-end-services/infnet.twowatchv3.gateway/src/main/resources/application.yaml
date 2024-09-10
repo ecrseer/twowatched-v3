@@ -4,12 +4,12 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: users-monolito
-          uri: lb://twowatch-monolito
+        - id: usuarios
+          uri: lb://twUsuarios
           filters:
             - StripPrefix=1
           predicates:
-            - Path=/monolito/**
+            - Path=/tw-usuarios/**
         - id: posts
           uri: lb://twPosts
           filters:

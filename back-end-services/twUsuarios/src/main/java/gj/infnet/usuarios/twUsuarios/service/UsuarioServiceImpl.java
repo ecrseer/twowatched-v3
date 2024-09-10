@@ -4,10 +4,12 @@ import gj.infnet.usuarios.twUsuarios.exceptions.ResourceNotFoundException;
 import gj.infnet.usuarios.twUsuarios.model.Usuario;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UsuarioServiceImpl {
 
     private final UsuarioRepository usuarioRepository;

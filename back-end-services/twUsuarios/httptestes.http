@@ -1,0 +1,33 @@
+### busca todos
+GET http://localhost:9942/tw-usuarios/usuario
+
+
+### adiciona
+POST http://localhost:9942/tw-usuarios/usuario/criar
+Content-Type: application/json
+
+{
+  "nome": "ana"
+}
+
+###
+
+### atualiza um
+PUT http://localhost:9942/tw-usuarios/usuario/atualizar
+Content-Type: application/json
+
+{
+  "id": 2,
+  "nome": "joaozin3"
+}
+
+###
+
+### remove um
+DELETE http://localhost:9942/tw-usuarios/usuario/deletar
+Content-Type: application/json
+
+{
+  "id": 1
+}
+

@@ -1,6 +1,6 @@
 
 ###### cria sala
-POST http://localhost:9942/monolito/sala-chat/criar
+POST http://localhost:5042/sala-chat/criar
 Content-Type: application/json
 
 {

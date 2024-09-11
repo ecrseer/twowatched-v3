@@ -5,6 +5,7 @@ import br.gj.infnetat.twposts.model.ComentarioDto;
 import br.gj.infnetat.twposts.services.ComentarioServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/comentarios")
 @RequiredArgsConstructor
+@Slf4j
 public class ComentarioController {
 
     private final ComentarioServiceImpl comentarioService;
@@ -26,6 +28,7 @@ public class ComentarioController {
 
     @GetMapping("/listar")
     public List<ComentarioDto> listarComentarios() {
+        log.info("Listando comentarios");
         return this.comentarioService.listar();
     }
 

@@ -11,12 +11,10 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor@Component
 public class SalaChatEstatisticaConsumer {
-    private final ObjectMapper objectMapper;
     private final SalaChatEstatisticaService salaChatEstatisticaService;
 
     @RabbitListener(queues = {"sala-chat-estatistica-queue"})
     public void receive(@Payload String json) throws JsonProcessingException {
-        salaChatEstatisticaService.processar();
-        System.out.println(json);
+        salaChatEstatisticaService.processar(json);
     }
 }

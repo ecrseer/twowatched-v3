@@ -19,7 +19,6 @@ public class SalaChatServiceTests {
     private SalaChatServiceImpl salaChatService;
 
 
-
     @Test
     @DisplayName("cadastra sala")
     public void testaCadastraSala() {
@@ -27,13 +26,13 @@ public class SalaChatServiceTests {
         assertNotNull(salvo);
 
         Long filme = 1L;
-        SalaChat salaComFilme = new SalaChat(2L, "Sala Com filme", filme, null);
+        SalaChat salaComFilme = new SalaChat("Sala Com filme", filme);
         SalaChat salvoComFilme = salaChatService.save(salaComFilme);
         assertNotNull(salvoComFilme);
 
         Long usuarioSalvo = 1L;
-
-        SalaChat salaComFilmeEUsuario = new SalaChat(3L, "Sala Com filme e usuario", filme, List.of(usuarioSalvo));
+        Long outroUsuario = 2L;
+        SalaChat salaComFilmeEUsuario = new SalaChat("Sala Com filme e usuario", filme, List.of(usuarioSalvo, outroUsuario));
         SalaChat salvoComFilmeUsuario = salaChatService.save(salaComFilmeEUsuario);
         assertNotNull(salvoComFilmeUsuario);
     }

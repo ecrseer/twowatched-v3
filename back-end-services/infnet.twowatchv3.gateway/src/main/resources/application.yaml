@@ -10,18 +10,27 @@ spring:
             - StripPrefix=1
           predicates:
             - Path=/tw-usuarios/**
+
         - id: posts
           uri: lb://twPosts
           filters:
             - StripPrefix=1
           predicates:
             - Path=/tw-posts/**
+
         - id: filmes
           uri: lb://twFilmes
           filters:
             - StripPrefix=1
           predicates:
             - Path=/tw-filmes/**
+
+        - id: salas
+          uri: lb://twSalachat
+          filters:
+            - StripPrefix=1
+          predicates:
+            - Path=/tw-salas-chat/**
 eureka:
   client:
     service-url:

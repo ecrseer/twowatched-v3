@@ -7,25 +7,34 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class SalaChat {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
 
 
-    private Long filmeId;
-
-
-    @ElementCollection
     private List<Long> usuariosId;
+
+
+    private Long filmeId;
+    private String filmeNome;
 
     public SalaChat(String nome) {
         this.nome = nome;
+    }
+
+    public SalaChat(String nome, Long filmeId) {
+        this.nome = nome;
+        this.filmeId = filmeId;
+    }
+
+    public SalaChat(String nome, Long filmeId, List<Long> usuariosId) {
+        this.nome = nome;
+        this.filmeId = filmeId;
+        this.usuariosId = usuariosId;
     }
 
 

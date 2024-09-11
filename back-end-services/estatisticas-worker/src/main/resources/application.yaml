@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: estatisticasWorker
+  jpa:
+    defer-datasource-initialization: true
+  data:
+    mongodb:
+      uri:mongodb://localhost:27017/chat-estatisticas-worker
+server:
+  port: 2042
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

@@ -2,6 +2,7 @@ package gj.infnet.usuarios.twUsuarios.service;
 
 import gj.infnet.usuarios.twUsuarios.exceptions.ResourceNotFoundException;
 import gj.infnet.usuarios.twUsuarios.model.Usuario;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

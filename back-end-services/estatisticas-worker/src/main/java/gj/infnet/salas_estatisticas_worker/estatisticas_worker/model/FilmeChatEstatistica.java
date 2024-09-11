@@ -19,15 +19,16 @@ public class FilmeChatEstatistica {
     @Id
     private String id;
 
-    private String idFilme;
+    private Long idFilme;
     private String tituloFilme;
-    private String quantidadeAssistida;
+    private int quantidadeAssistida;
 
     private List<Long> usuarios;
 
 
     public void incrementar(SalaChat sala){
-        this.setIdFilme(sala.getFilmeId());
+        Long idFilme = sala.getFilmeId();
+        this.setIdFilme(idFilme);
         this.setTituloFilme(sala.getFilmeNome());
         this.setUsuarios(sala.getUsuariosId());
         this.setQuantidadeAssistida(this.quantidadeAssistida+1);

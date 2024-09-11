@@ -5,13 +5,9 @@ Content-Type: application/json
 
 {
   "nome": "sala httpss",
-  "filme": {
-    "id": 2
-  },
-  "usuarios": [
-    {
-      "id": 1
-    }
+  "filmeId": 2,
+  "usuariosId": [
+    1
   ]
 }
 

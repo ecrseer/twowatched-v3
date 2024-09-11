@@ -42,5 +42,15 @@ public class SalaChat {
         this.usuariosId = usuariosId;
     }
 
+    public boolean isDadosValidos() {
+        return this.getUsuariosId() != null && this.getFilmeId() != null;
+    }
+
+    public void verificarDados() {
+        boolean valido = this.isDadosValidos();
+        if (!valido) {
+            throw new RuntimeException("Dados invalidos");
+        }
+    }
 
 }

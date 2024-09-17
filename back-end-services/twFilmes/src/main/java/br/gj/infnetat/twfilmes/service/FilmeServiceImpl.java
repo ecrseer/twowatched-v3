@@ -37,6 +37,7 @@ public class FilmeServiceImpl {
         PageRequest paginacao = PageRequest.of(paginaRequest.getPageNumber(), paginaRequest.getPageSize(), paginaRequest.getSort());
         var all = this.filmeRepository.findAll();
         Sort ordenacao = Sort.by("title").ascending();
+
         return this.filmeRepository.findAll(paginacao).stream().toList();
     }
 }

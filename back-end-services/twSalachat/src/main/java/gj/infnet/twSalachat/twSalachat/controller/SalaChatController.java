@@ -2,16 +2,14 @@ package gj.infnet.twSalachat.twSalachat.controller;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import gj.infnet.twSalachat.twSalachat.model.Mensagem;
 import gj.infnet.twSalachat.twSalachat.model.SalaChat;
 import gj.infnet.twSalachat.twSalachat.rabbitmq.SalaChatEstatisticaService;
 import gj.infnet.twSalachat.twSalachat.service.SalaChatServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -36,5 +34,20 @@ public class SalaChatController {
         salaChatEstatisticaService.criarEstatistica(criada);
         return criada.getId();
 
+    }
+
+    @GetMapping("/por-id/{id}")
+    @Operation(summary = "Busca uma sala por id")
+    public SalaChat buscaPorId(@PathVariable Long id) {
+        log.info("buscando uma sala de chat chamada");
+        SalaChat sala = this.salaChatService.findById(id);
+        return sala;
+    }
+
+    @PostMapping("/{id}/adiciona-message")
+    @Operation(summary = "Adiciona uma mensagem em uma sala de chat")
+    public SalaChat criaSala(@PathVariable Long id, @RequestBody Mensagem msg) throws JsonProcessingException {
+        log.info("Adicionando mensagem {}", msg);
+        return this.salaChatService.adicionaMensagem(id, msg);
     }
 }

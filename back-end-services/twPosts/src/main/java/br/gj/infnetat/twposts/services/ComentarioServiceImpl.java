@@ -18,7 +18,8 @@ public class ComentarioServiceImpl {
 
 
 
-    public Comentario salvar(Comentario comentario) {
+    public Comentario salvar(Comentario dto) {
+        Comentario comentario =  (Comentario)  dto;
         return comentarioRepository.save(comentario);
     }
 

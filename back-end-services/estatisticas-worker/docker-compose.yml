@@ -1,11 +1,18 @@
+version: '3.8'
+
 services:
   mongo:
     image: mongo:7-jammy
     volumes:
       -  ./mongodb-data:/data/db
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: rabbitmq
     ports:
       - "27017:27017"
-
+      - "5672:5672"
+      - "15672:15672"
+    restart: unless-stopped
   mongo-express:
     image: mongo-express:1.0-20-alpine3.19
     links:

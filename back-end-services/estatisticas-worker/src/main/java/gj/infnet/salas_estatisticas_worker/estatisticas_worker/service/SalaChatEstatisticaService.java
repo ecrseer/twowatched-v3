@@ -12,8 +12,9 @@ public class SalaChatEstatisticaService {
     private final ObjectMapper objectMapper;
     private final FilmeChatEstatisticaServiceImpl filmeChatEstatisticaService;
 
-    public void processar(String json){
+    public FilmeChatEstatistica processar(String json){
         SalaChat sala= objectMapper.convertValue(json, SalaChat.class);
-        filmeChatEstatisticaService.criar(sala);
+        FilmeChatEstatistica criado = filmeChatEstatisticaService.criar(sala);
+        return criado;
     }
 }

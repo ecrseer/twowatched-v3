@@ -1,5 +1,6 @@
 package br.gj.infnetat.twposts.controller;
 
+import br.gj.infnetat.twposts.model.AdicionaComentarioDto;
 import br.gj.infnetat.twposts.model.Comentario;
 import br.gj.infnetat.twposts.model.ComentarioDto;
 import br.gj.infnetat.twposts.services.ComentarioServiceImpl;

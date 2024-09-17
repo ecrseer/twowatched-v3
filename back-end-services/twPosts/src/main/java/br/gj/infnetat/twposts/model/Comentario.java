@@ -31,6 +31,11 @@ public class Comentario {
         this.texto = texto;
     }
 
+    public Comentario(String texto, Long usuarioId) {
+        this.texto = texto;
+        this.usuarioId = usuarioId;
+    }
+
     public Comentario(String texto, Long usuarioId, Comentario pai, List<Comentario> filhos) {
         this.texto = texto;
         this.usuarioId = usuarioId;

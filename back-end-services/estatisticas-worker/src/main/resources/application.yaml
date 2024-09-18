@@ -5,7 +5,8 @@ spring:
     defer-datasource-initialization: true
   data:
     mongodb:
-      uri:mongodb://localhost:27017/chat-estatisticas-worker
+      uri:mongodb://MONGO-SERVER:27017/chat-estatisticas-worker
+#      uri:mongodb://localhost:27017/chat-estatisticas-worker
   h2:
     console:
       enabled: true
@@ -24,3 +25,7 @@ server:
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url:
+      #defaultZone: http://localhost:8761/eureka
+      defaultZone: http://EUREKA-SERVER:8761/eureka

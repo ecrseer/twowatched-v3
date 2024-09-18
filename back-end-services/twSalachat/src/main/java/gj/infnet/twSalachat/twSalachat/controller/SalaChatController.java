@@ -25,14 +25,14 @@ public class SalaChatController {
     private final SalaChatEstatisticaService salaChatEstatisticaService;
 
 
-    @PostMapping("/criar")
+    @PostMapping
     @Operation(summary = "Cria uma sala de chat")
-    public Long criaSala(@RequestBody SalaChat sala) throws JsonProcessingException {
+    public String criaSala(@RequestBody SalaChat sala) throws JsonProcessingException {
         log.info("Criando uma sala de chat chamada{}", sala.getNome());
         SalaChat criada = this.salaChatService.save(sala);
         Date agora = new Date();
         salaChatEstatisticaService.criarEstatistica(criada);
-        return criada.getId();
+        return "Sala criada com id " + criada.getId();
 
     }
 

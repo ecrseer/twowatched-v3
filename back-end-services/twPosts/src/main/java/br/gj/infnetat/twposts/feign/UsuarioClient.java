@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient("twUsuarios")
 public interface UsuarioClient {
 
-    @GetMapping("/usuario/{id}")
+    @GetMapping("/usuario/por-id/{id}")
     UsuarioPayload encontraUsuarioPorId(@PathVariable Long id);
 }

@@ -27,7 +27,7 @@ public class UsuarioController {
         this.usuarioServiceImpl = usuarioServiceImpl;
     }
 
-    @PutMapping("/atualizar")
+    @PutMapping
     @Operation(summary = "Atualiza um usuário de uma sala")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuario atualizado com sucesso",
@@ -43,7 +43,7 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(atualizado);
     }
 
-    @PostMapping("/criar")
+    @PostMapping
     @Operation(summary = "Cria um usuário")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuario criado para entrar em salas",
@@ -59,7 +59,7 @@ public class UsuarioController {
     }
 
 
-    @DeleteMapping("/deletar")
+    @DeleteMapping
     @Operation(summary = "Remove um usuário")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuario removido",
@@ -79,7 +79,7 @@ public class UsuarioController {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/por-id/{id}")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuario encontrado",
                     content = {@Content(mediaType = "application/json",

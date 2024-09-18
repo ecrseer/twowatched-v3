@@ -31,4 +31,9 @@ public class FilmeController {
     public Iterable<Filme> listarFilmes(Pageable pageable) {
         return this.filmeService.findAllPaged(pageable);
     }
+
+    @GetMapping("/buscar-por-nome/{nome}")
+    public Filme criaFilme(@PathVariable String nome) {
+        return this.filmeService.buscaPorNome(nome);
+    }
 }

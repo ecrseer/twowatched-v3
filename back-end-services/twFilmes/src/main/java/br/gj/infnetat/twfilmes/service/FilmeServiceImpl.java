@@ -40,4 +40,8 @@ public class FilmeServiceImpl {
 
         return this.filmeRepository.findAll(paginacao).stream().toList();
     }
+
+    public Filme buscaPorNome(String nome){
+        return this.filmeRepository.findByTitleLikeIgnoreCase(nome);
+    }
 }

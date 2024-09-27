@@ -1,0 +1,76 @@
+services:
+  rabbit:
+    image: rabbitmq:3-management
+    container_name: RABBIT-SERVER
+    networks:
+      - twowatc-networ
+  mongo:
+    container_name: MONGO-SERVER
+    image: mongo:7-jammy
+    volumes:
+      - ./mongodb-data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - twowatc-networ
+  mongo-express:
+    image: mongo-express:1.0.2-20-alpine3.19
+    links:
+      - mongo
+    ports:
+      - "8099:8081"
+    networks:
+      - twowatc-networ
+    depends_on:
+      - mongo
+  tw-eureka:
+    image: gabj/tw-eureka:latest
+    container_name: EUREKA-SERVER
+    ports:
+      - "8761:8761"
+    networks:
+      - twowatc-networ
+  tw-sala-chat-service:
+    image: gabj/tw-sala-chat:latest
+    networks:
+      - twowatc-networ
+    depends_on:
+      - tw-eureka
+  tw-filmes-service:
+    image: gabj/tw-filmes:latest
+    networks:
+      -  twowatc-networ
+    depends_on:
+      - tw-eureka
+    deploy:
+      replicas: 3
+  tw-usuarios-service:
+    image: gabj/tw-usuarios:latest
+    networks:
+      - twowatc-networ
+    depends_on:
+      - tw-eureka
+    deploy:
+      replicas: 10
+  tw-estatisticas-worker-service:
+    image: gabj/tw-estatisticas-worker:latest
+    networks:
+      - twowatc-networ
+    depends_on:
+      - tw-eureka
+      - mongo
+    deploy:
+      replicas: 5
+  gateway:
+    image: gabj/tw-gateway:latest
+    networks:
+      - twowatc-networ
+    depends_on:
+      - tw-estatisticas-worker-service
+      - tw-eureka
+      - tw-usuarios-service
+      - tw-sala-chat-service
+      - tw-filmes-service
+networks:
+  twowatc-networ:
+    driver: bridge

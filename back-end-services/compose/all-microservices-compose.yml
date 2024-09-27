@@ -1,76 +1,44 @@
+version: '3.8'
 services:
-  rabbit:
-    image: rabbitmq:3-management
-    container_name: RABBIT-SERVER
-    networks:
-      - twowatc-networ
-  mongo:
-    container_name: MONGO-SERVER
-    image: mongo:7-jammy
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: salasdb
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: senha
+    ports:
+      - "3306:3306"
     volumes:
-      - ./mongodb-data:/data/db
+      - mysql-data:/var/lib/mysql
+    networks:
+      - twowatch-networ
+      -
+eureka-server:
+  image: gabj/infnet-eureka-server
+  build:
+    context: ../twowatch-serv-eureka/
+    dockerfile: Dockerfile
+  ports:
+    - "8761:8761"
+  networks:
+    - twowatch-networ
+
+  tw-salachat-service:
+    image: gabj/tw-salachat
+    build:
+      context: ../twSalachat/
+      dockerfile: Dockerfile
     ports:
-      - "27017:27017"
-    networks:
-      - twowatc-networ
-  mongo-express:
-    image: mongo-express:1.0.2-20-alpine3.19
-    links:
-      - mongo
-    ports:
-      - "8099:8081"
-    networks:
-      - twowatc-networ
+      - "8080:8080"
     depends_on:
-      - mongo
-  tw-eureka:
-    image: gabj/tw-eureka:latest
-    container_name: EUREKA-SERVER
-    ports:
-      - "8761:8761"
+      - eureka-server
+      - mysql
     networks:
-      - twowatc-networ
-  tw-sala-chat-service:
-    image: gabj/tw-sala-chat:latest
-    networks:
-      - twowatc-networ
-    depends_on:
-      - tw-eureka
-  tw-filmes-service:
-    image: gabj/tw-filmes:latest
-    networks:
-      -  twowatc-networ
-    depends_on:
-      - tw-eureka
-    deploy:
-      replicas: 3
-  tw-usuarios-service:
-    image: gabj/tw-usuarios:latest
-    networks:
-      - twowatc-networ
-    depends_on:
-      - tw-eureka
-    deploy:
-      replicas: 10
-  tw-estatisticas-worker-service:
-    image: gabj/tw-estatisticas-worker:latest
-    networks:
-      - twowatc-networ
-    depends_on:
-      - tw-eureka
-      - mongo
-    deploy:
-      replicas: 5
-  gateway:
-    image: gabj/tw-gateway:latest
-    networks:
-      - twowatc-networ
-    depends_on:
-      - tw-estatisticas-worker-service
-      - tw-eureka
-      - tw-usuarios-service
-      - tw-sala-chat-service
-      - tw-filmes-service
+      - twowatch-networ
+
 networks:
-  twowatc-networ:
-    driver: bridge
+  twowatch-networ:
+
+volumes:
+  mysql-data:
